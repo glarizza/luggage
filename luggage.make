@@ -370,6 +370,12 @@ l_Library: l_root
 	@sudo mkdir -p ${WORK_D}/Library
 	@sudo chown root:admin ${WORK_D}/Library
 	@sudo chmod 1775 ${WORK_D}/Library
+	
+l_Library_HuronHS: l_Library
+	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Python2.5
+	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Shell
+	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Puppet
+	@sudo chmod -R 755 ${WORK_D}/Library/HuronHS
 
 l_Library_Application_Support: l_Library
 	@sudo mkdir -p ${WORK_D}/Library/Application\ Support
@@ -467,6 +473,11 @@ l_System_Library: l_System
 	@sudo mkdir -p ${WORK_D}/System/Library
 	@sudo chown -R root:wheel ${WORK_D}/System/Library
 	@sudo chmod -R 755 ${WORK_D}/System/Library
+
+l_System_Library_Fonts: l_System
+	@sudo mkdir -p ${WORK_D}/System/Library/Fonts
+	@sudo chown -R root:wheel ${WORK_D}/System/Library/Fonts
+	@sudo chmod -R 644 ${WORK_D}/System/Library/Fonts
 
 l_System_Library_User_Template: l_System_Library
 	@sudo mkdir -p ${WORK_D}/System/Library/User\ Template/English.lproj
