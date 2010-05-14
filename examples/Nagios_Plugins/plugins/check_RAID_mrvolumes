@@ -1,0 +1,41 @@
+#!/usr/bin/env python
+#
+#  Author:  Gary Larizza
+#  File: check_RAID_mrvolumes.py 
+#  Purpose:  This script will check the RAID status of a particular volume and return
+#             a status of OK: or Critical:.  A Critical response will exit with status
+#             2, which allows Nagios to show an error.  This script uses the older
+#             megaraid command for older RAID cards.
+#
+#  Arguments:  The volume Logical Drive Number to be checked - such as 0
+
+import os
+import sys
+import subprocess
+
+
+# Accept the passed volume argument
+volumearg = sys.argv[1]
+
+# Run command to grab the volume's current condition, as well as the whole command output
+volcondition = subprocess.Popen("megaraid -showconfig "+volumearg+" | grep \'Status\' | awk \'{print $3}\'", stdout=subprocess.PIPE, shell=True).stdout.read()
+volinfo = subprocess.Popen("megaraid -showconfig "+volumearg, stdout=subprocess.PIPE, shell=True).stdout.read()
+raidstatus = subprocess.Popen("megaraid -showconfig "+volumearg+" | grep \'Status\' | awk \'{print $3}\'", stdout=subprocess.PIPE, shell=True).stdout.read()
+raidlevel = subprocess.Popen("megaraid -showconfig "+volumearg+" | grep \'RAID Level\' | awk \'{print $4}\'", stdout=subprocess.PIPE, shell=True).stdout.read()
+raiddrives = subprocess.Popen("megaraid -showconfig "+volumearg+" | grep \'Drives\' | awk \'{print $3, $4, $5, $6, $7}\'", stdout=subprocess.PIPE, shell=True).stdout.read()
+
+# Strip off newline character
+volcondition = volcondition.rstrip()
+volinfo = volinfo.rstrip("\r\n")
+raidstatus = raidstatus.rstrip("\r\n")
+raidlevel = raidlevel.rstrip("\r\n")
+raiddrives = raiddrives.rstrip("\r\n")
+
+# If the condition is ANYTHING other than Optimal, throw up an error and spit out the command result
+if volcondition == 'OPTIMAL':
+    print "OK:  RAID Status: "+raidstatus+" - RAID Level: "+raidlevel+" - RAID Drives: "+raiddrives
+    sys.exit(0)
+else:
+    print "CRITICAL: "+voinfo
+    sys.exit(2)
+
