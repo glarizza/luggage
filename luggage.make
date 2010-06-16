@@ -231,6 +231,11 @@ l_etc: l_root
 	@sudo chown -R root:wheel ${WORK_D}/etc
 	@sudo chmod -R 755 ${WORK_D}/etc
 
+l_etc_puppet: l_root
+	@sudo mkdir -p ${WORK_D}/etc/puppet
+	@sudo chown -R root:wheel ${WORK_D}/etc/puppet
+	@sudo chmod -R 755 ${WORK_D}/etc/puppet
+
 l_etc_hooks: l_etc
 	@sudo mkdir -p ${WORK_D}/etc/hooks
 	@sudo chown -R root:wheel ${WORK_D}/etc/hooks
