@@ -21,7 +21,9 @@ PAYLOAD=\
 	unbz2-applications-Firstclass.app \
 	pack-library-files 
 
-#  Use 'tar cvfj filename.app.tar.bz2 /Path/To/App' to tar up the current directory
+#  Change to the directory containing your .app file and Use 'tar cvfj filename.app.tar.bz2 your.app' 
+#	to tar up the Application.  Make sure 'unbz2-applications-FILENAME.app' matches FILENAME.app.tar.bz2
+#	(right down to the case) or else you will get errors.
 
 pack-library-files: l_Library
 	@sudo ${CP} -R ./Library/ ${WORK_D}/Library/
