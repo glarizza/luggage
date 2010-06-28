@@ -44,6 +44,7 @@ uninstall_script="/private/etc/cups/printers_deployment/uninstalls/$printername.
 /bin/echo "/usr/sbin/lpadmin -x $printername" >> "$uninstall_script"
 /bin/echo "srm /private/etc/cups/printers_deployment/$printername" >> "$uninstall_script"
 /bin/echo "srm /private/etc/cups/printers_deployment/uninstalls/$printername.sh" >> "$uninstall_script"
+/bin/echo "srm /private/etc/cups/ppd/$printername" >> "$uninstall_script"
 
 # Permission the directories properly.
 /usr/sbin/chown -R root:_lp /private/etc/cups/printers_deployment
