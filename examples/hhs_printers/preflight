@@ -9,6 +9,11 @@
 # Script to install and setup printers on a Mac OS X system in a "Munki-Friendly" way.
 # Make sure to install the required drivers first!
 
+# Check to make sure we're ONLY installing to the boot volume
+if [ "$3" != "/" ]; then
+       exit 0
+fi
+
 # Variables. Edit these.
 printername="mcx_HHS_Office_9050"
 location="HHS Office"
