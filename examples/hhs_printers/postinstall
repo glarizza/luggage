@@ -24,7 +24,7 @@ driver_options="-o 'HPOption_Tray1=True' -o 'HPOption_2000_Sheet_Tray=True' -o '
 
 # Enable and start the printers on the system (after adding the printer initially it is paused).
 /usr/sbin/cupsenable $(lpstat -p | grep -w "printer" | awk '{print$2}')
-/usr/bin/lpoptions -p "$printername" "$driver_options"
+/usr/bin/lpoptions -p $printername $driver_options
 
 # Set the printer as the default if we want.
 # /usr/bin/lpoptions -d $printername
