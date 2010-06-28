@@ -19,4 +19,11 @@ include /usr/local/share/luggage/luggage.make
 
 TITLE=HHS_Main_Office_9050_Installer
 REVERSE_DOMAIN=com.huronhs
-PAYLOAD=pack-script-postinstall
+PAYLOAD=\
+		pack-hp-ppd \
+		pack-script-preflight
+
+pack-hp-ppd: l_etc_cups_ppd
+	@sudo ${CP} ./mcx_HHS_Office_9050.ppd ${WORK_D}/etc/cups/ppd/mcx_HHS_Office_9050.ppd
+	@sudo chmod 644 ${WORK_D}/etc/cups/ppd/mcx_HHS_Office_9050.ppd
+	@sudo chown root:_lp ${WORK_D}/etc/cups/ppd/mcx_HHS_Office_9050.ppd

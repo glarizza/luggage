@@ -235,6 +235,16 @@ l_etc_puppet: l_root
 	@sudo mkdir -p ${WORK_D}/etc/puppet
 	@sudo chown -R root:wheel ${WORK_D}/etc/puppet
 	@sudo chmod -R 755 ${WORK_D}/etc/puppet
+	
+l_etc_cups_ppd: l_etc_cups
+	@sudo mkdir -p ${WORK_D}/etc/cups/ppd
+	@sudo chown -R root:_lp ${WORK_D}/etc/cups/ppd
+	@sudo chmod -R 755 ${WORK_D}/etc/cups/ppd
+
+l_etc_cups: l_root
+	@sudo mkdir -p ${WORK_D}/etc/cups
+	@sudo chown -R root:_lp ${WORK_D}/etc/cups
+	@sudo chmod -R 755 ${WORK_D}/etc/cups
 
 l_etc_hooks: l_etc
 	@sudo mkdir -p ${WORK_D}/etc/hooks
