@@ -21,6 +21,7 @@ TITLE=WIS_Puppet_Config
 REVERSE_DOMAIN=com.huronhs
 PAYLOAD=\
 		pack-puppet-conf \
+		pack-puppetclean-script \
 		pack-puppetd-script
 
 pack-puppet-conf: l_etc_puppet
@@ -30,3 +31,7 @@ pack-puppet-conf: l_etc_puppet
 pack-puppetd-script: l_usr_bin
 	@sudo ${CP} ./puppetd.sh ${WORK_D}/usr/bin/puppetd.sh
 	@sudo chmod 755 ${WORK_D}/usr/bin/puppetd.sh
+
+pack-puppetclean-script: l_usr_bin
+	@sudo ${CP} ./puppetclean.rb ${WORK_D}/usr/bin/puppetclean.rb
+	@sudo chmod 755 ${WORK_D}/usr/bin/puppetclean.rb

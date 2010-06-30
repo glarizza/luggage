@@ -17,7 +17,7 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=HHS_Media_Center_Managed_Installer
+TITLE=HHS_Media_Center_Standalone_Installer
 REVERSE_DOMAIN=com.huronhs
 PAYLOAD=\
 		pack-hp-ppd \

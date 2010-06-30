@@ -17,7 +17,7 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=HHS_Snow_Leopard_G5_Lab_Color_Managed_Installer
+TITLE=HHS_Snow_Leopard_G5_Lab_Color_Standalone_Installer
 REVERSE_DOMAIN=com.huronhs
 PAYLOAD=\
 		pack-hp-ppd \

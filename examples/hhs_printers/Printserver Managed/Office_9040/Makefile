@@ -17,7 +17,7 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=HHS_Main_Office_9040_Installer
+TITLE=HHS_Main_Office_9040_Managed_Installer
 REVERSE_DOMAIN=com.huronhs
 PAYLOAD=\
 		pack-hp-ppd \
