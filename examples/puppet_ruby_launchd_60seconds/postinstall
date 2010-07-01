@@ -1,0 +1,3 @@
+if [ $3 = "/" ] ; then
+	launchctl load /Library/LaunchDaemons/com.huronhs.puppetconfig.plist
+fi

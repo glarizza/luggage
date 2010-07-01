@@ -17,13 +17,12 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=HHS_Leopard_G5_Lab_BW_Managed_Installer
+TITLE=Ruby-Puppet-Launchd-Every-60-Seconds
 REVERSE_DOMAIN=com.huronhs
 PAYLOAD=\
-		pack-hp-ppd \
-		pack-script-postflight
+		pack-puppetd-launchdaemon \
+		pack-script-postinstall
 
-pack-hp-ppd: l_Library_Printers_PPDs
-	@sudo ${CP} ./hp\ LaserJet\ 4200\ Series.gz ${WORK_D}/Library/Printers/PPDs/Contents/Resources/hp\ LaserJet\ 4200\ Series.gz
-	@sudo chmod 664 ${WORK_D}/Library/Printers/PPDs/Contents/Resources/hp\ LaserJet\ 4200\ Series.gz
-	@sudo chown root:admin ${WORK_D}/Library/Printers/PPDs/Contents/Resources/hp\ LaserJet\ 4200\ Series.gz
+pack-puppetd-launchdaemon: l_Library_LaunchDaemons
+	@sudo ${CP} ./com.huronhs.puppetconfig.plist ${WORK_D}/Library/LaunchDaemons/com.huronhs.puppetconfig.plist
+	@sudo chmod 644 ${WORK_D}/Library/LaunchDaemons/com.huronhs.puppetconfig.plist
