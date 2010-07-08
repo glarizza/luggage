@@ -16,10 +16,10 @@ ENV['TERM'] = 'xterm-color'
 $stdout.sync=(true) if not $stdout.sync
 
 ## Root Check - Only root should be running this script
-if ENV['USER'] != "root"
-  puts "This script must be run as root."
-  exit(1)
-end
+# if ENV['USER'] != "root"
+#   puts "This script must be run as root."
+#   exit(1)
+# end
 
 ##  Variable Declarations
 suffix = 'huronhs.com'
@@ -64,6 +64,10 @@ def clean_certs (command, mac_uid)
 
   system "puppetd -o --no-daemonize --verbose --certname=#{mac_uid} --debug --report 2>&1"
   sleep(5)
+  system "puppetd -o --no-daemonize --verbose --certname=#{mac_uid} --debug --report 2>&1"
+  system "puppetd -o --no-daemonize --verbose --certname=#{mac_uid} --debug --report 2>&1"
+  system "puppetd -o --no-daemonize --verbose --certname=#{mac_uid} --debug --report 2>&1"
+  system "puppetd -o --no-daemonize --verbose --certname=#{mac_uid} --debug --report 2>&1"
   system "puppetd -o --no-daemonize --verbose --certname=#{mac_uid} --debug --report 2>&1"
   exit(0)
 end
