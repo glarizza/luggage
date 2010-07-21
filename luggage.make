@@ -387,9 +387,9 @@ l_Library: l_root
 	@sudo chmod 1775 ${WORK_D}/Library
 	
 l_Library_HuronHS: l_Library
-	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Python2.5
+	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Python2.5/dsutils
 	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Shell
-	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Puppet
+	@sudo mkdir -p ${WORK_D}/Library/HuronHS/Ruby
 	@sudo chmod -R 755 ${WORK_D}/Library/HuronHS
 
 l_Library_Application_Support: l_Library

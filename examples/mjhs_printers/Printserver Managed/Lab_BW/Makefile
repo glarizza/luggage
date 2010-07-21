@@ -17,11 +17,13 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=create_HuronHS_Directory
+TITLE=MJHS_iMac_Lab_BW_Managed_Installer
 REVERSE_DOMAIN=com.huronhs
-PAYLOAD=pack-Library-HuronHS
+PAYLOAD=\
+		pack-hp-ppd \
+		pack-script-postflight
 
-pack-Library-HuronHS: l_Library_HuronHS
-	@sudo ${CP} googlecorp.ds ${WORK_D}/Library/HuronHS/Python2.5/dsutils/__init__.py
-	@sudo ${CP} NetworkCheck.py ${WORK_D}/Library/HuronHS/Python2.5/NetworkCheck.py
-	@sudo chmod -R 755 ${WORK_D}/Library/HuronHS/Python2.5/*
+pack-hp-ppd: l_Library_Printers_PPDs
+	@sudo ${CP} ./hp\ LaserJet\ 4200\ Series.gz ${WORK_D}/Library/Printers/PPDs/Contents/Resources/hp\ LaserJet\ 4200\ Series.gz
+	@sudo chmod 664 ${WORK_D}/Library/Printers/PPDs/Contents/Resources/hp\ LaserJet\ 4200\ Series.gz
+	@sudo chown root:admin ${WORK_D}/Library/Printers/PPDs/Contents/Resources/hp\ LaserJet\ 4200\ Series.gz
