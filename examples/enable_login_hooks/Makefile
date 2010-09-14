@@ -15,20 +15,22 @@
 #
 include /usr/local/share/luggage/luggage.make
 
-TITLE=enable_loginhooks
-REVERSE_DOMAIN=com.example.corp
+TITLE=Enable_Hooks
+REVERSE_DOMAIN=com.huronhs
 PAYLOAD=\
 	unbz2-utilities-iHook.app \
 	pack-hook-background.jpg \
 	pack-hookscript-LO999_DestroyKerberosTicket.hook \
 	pack-hookscript-login.hook \
 	pack-hookscript-logout.hook \
+	pack-hookscript-LICachesRedirect.hook \
 	pack-hookscript-run_loginscripts.rb \
 	pack-hookscript-run_logoutscripts.rb \
 	pack-hookscript-hookutils.rb \
+	unbz2-applications-iHook.app \
 	pack-script-postflight
 
-TARBALL_LOCATION="http://location/of/tarball"
+#TARBALL_LOCATION="http://10.13.0.6/pkgs/general_image/iHook.app.tar.bz2"
 
 # stick a background image into /etc/hooks to use with iHook.
 pack-hook-background.jpg: hook_background.jpg l_etc_hooks
@@ -47,5 +49,5 @@ pack-hook-background.jpg: hook_background.jpg l_etc_hooks
 # Makefile to put in a new tarball url, make will automatically replace the
 # current generically named tarball with a current copy from my local repo
 
-iHook.app.tar.bz2: Makefile
-	curl ${TARBALL_LOCATION} -o iHook.app.tar.bz2
+#iHook.app.tar.bz2: Makefile
+#	curl ${TARBALL_LOCATION} -o iHook.app.tar.bz2
