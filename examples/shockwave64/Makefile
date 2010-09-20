@@ -25,9 +25,9 @@ PAYLOAD=\
 		pack-shockwave-ppc
 
 
-pack-shockwave-folder: l_Library_Application_Support
-	@sudo ${CP} -R ./Shockwave\ 11 ${WORK_D}/Library/Application\ Support/Shockwave\ 11
-	@sudo chmod -R 755 ${WORK_D}/Library/Application\ Support/Shockwave\ 11
+pack-shockwave-folder: l_Library_Application_Support_Adobe
+	@sudo ${CP} -R ./Shockwave\ 11 ${WORK_D}/Library/Application\ Support/Adobe/Shockwave\ 11
+	@sudo chmod -R 755 ${WORK_D}/Library/Application\ Support/Adobe/Shockwave\ 11
 	
 pack-shockwave-plugin: l_Library_Internet_Plug-Ins
 	@sudo ${CP} -R ./DirectorShockwave.plugin ${WORK_D}/Library/Internet\ Plug-Ins
