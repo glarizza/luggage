@@ -453,6 +453,11 @@ l_Library_Python: l_Library
 	@sudo mkdir -p ${WORK_D}/Library/Python
 	@sudo chown root:admin ${WORK_D}/Library/Python
 	@sudo chmod 775 ${WORK_D}/Library/Python
+	
+l_Library_Internet_Plug-Ins: l_Library
+	@sudo mkdir -p ${WORK_D}/Library/Internet\ Plug-Ins
+	@sudo chown root:admin ${WORK_D}/Library/Internet\ Plug-Ins
+	@sudo chmod 775 ${WORK_D}/Library/Internet\ Plug-Ins
 
 l_Library_Python_26: l_Library_Python
 	@sudo mkdir -p ${WORK_D}/Library/Python/2.6
