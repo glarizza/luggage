@@ -230,6 +230,11 @@ l_etc: l_root
 	@sudo mkdir -p ${WORK_D}/etc
 	@sudo chown -R root:wheel ${WORK_D}/etc
 	@sudo chmod -R 755 ${WORK_D}/etc
+	
+l_etc_mcollective: l_etc
+	@sudo mkdir -p ${WORK_D}/etc/mcollective
+	@sudo chown -R root:wheel ${WORK_D}/etc/mcollective
+	@sudo chmod -R 755 ${WORK_D}/etc/mcollective
 
 l_etc_puppet: l_root
 	@sudo mkdir -p ${WORK_D}/etc/puppet
@@ -270,6 +275,11 @@ l_usr_lib: l_usr
 	@sudo mkdir -p ${WORK_D}/usr/lib
 	@sudo chown -R root:wheel ${WORK_D}/usr/lib
 	@sudo chmod -R 755 ${WORK_D}/usr/lib
+	
+l_usr_libexec: l_usr
+	@sudo mkdir -p ${WORK_D}/usr/libexec
+	@sudo chown -R root:wheel ${WORK_D}/usr/libexec
+	@sudo chmod -R 755 ${WORK_D}/usr/libexec
 
 l_usr_local: l_usr
 	@sudo mkdir -p ${WORK_D}/usr/local
@@ -401,8 +411,6 @@ l_Library_Application_Support_Adobe: l_Library
 	@sudo mkdir -p ${WORK_D}/Library/Application\ Support/Adobe
 	@sudo chown root:admin ${WORK_D}/Library/Application\ Support/Adobe
 	@sudo chmod 775 ${WORK_D}/Library/Application\ Support/Adobe
-
-
 l_Library_Desktop_Pictures: l_Library
 	@sudo mkdir -p ${WORK_D}/Library/Desktop\ Pictures
 	@sudo chown root:admin ${WORK_D}/Library/Desktop\ Pictures
