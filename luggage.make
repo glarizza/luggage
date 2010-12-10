@@ -236,6 +236,11 @@ l_etc_mcollective: l_etc
 	@sudo chown -R root:wheel ${WORK_D}/etc/mcollective
 	@sudo chmod -R 755 ${WORK_D}/etc/mcollective
 
+l_etc_angelia: l_etc
+	@sudo mkdir -p ${WORK_D}/etc/angelia
+	@sudo chown -R root:wheel ${WORK_D}/etc/angelia
+	@sudo chmod -R 755 ${WORK_D}/etc/angelia
+
 l_etc_puppet: l_root
 	@sudo mkdir -p ${WORK_D}/etc/puppet
 	@sudo chown -R root:wheel ${WORK_D}/etc/puppet
@@ -375,11 +380,21 @@ l_var_db: l_var
 	@sudo mkdir -p ${WORK_D}/var/db
 	@sudo chown -R root:wheel ${WORK_D}/var/db
 	@sudo chmod -R 755 ${WORK_D}/var/db
+	
+l_var_log_angelia: l_root
+	@sudo mkdir -p ${WORK_D}/var/log/angelia
+	@sudo chown -R root:wheel ${WORK_D}/var/log/angelia
+	@sudo chmod -R 755 ${WORK_D}/var/log/angelia
 
 l_var_root: l_var
 	@sudo mkdir -p ${WORK_D}/var/root
 	@sudo chown -R root:wheel ${WORK_D}/var/root
 	@sudo chmod -R 750 ${WORK_D}/var/root
+
+l_var_spool_angelia: l_root
+	@sudo mkdir -p ${WORK_D}/var/spool/angelia
+	@sudo chown -R root:wheel ${WORK_D}/var/spool/angelia
+	@sudo chmod -R 777 ${WORK_D}/var/spool/angelia
 
 l_Applications: l_root
 	@sudo mkdir -p ${WORK_D}/Applications
