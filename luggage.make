@@ -394,7 +394,7 @@ l_var_root: l_var
 l_var_spool_angelia: l_root
 	@sudo mkdir -p ${WORK_D}/var/spool/angelia
 	@sudo chown -R root:wheel ${WORK_D}/var/spool/angelia
-	@sudo chmod -R 777 ${WORK_D}/var/spool/angelia
+	@sudo chmod -R 644 ${WORK_D}/var/spool/angelia
 
 l_Applications: l_root
 	@sudo mkdir -p ${WORK_D}/Applications
