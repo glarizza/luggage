@@ -56,7 +56,7 @@ unpack-puppet-${PUPPETFILE}:
 # This rule will copy auth.conf to the /etc/puppet directory
 pack-puppet-etc: l_etc_puppet
 	@sudo ${CP} ./${PUPPETFILE}/conf/auth.conf ${WORK_D}/etc/puppet/auth.conf
-	@sudo chmod 755 ${WORK_D}/etc/puppet/auth.conf
+	@sudo chmod 644 ${WORK_D}/etc/puppet/auth.conf
 	
 # This rule copies the Puppet binaries, libraries, documentation, and manpages
 #    to their Mac-specific locations in /usr/ and sets permissions to 755.
