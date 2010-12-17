@@ -10,8 +10,8 @@ PAYLOAD=\
 		pack-puppet-preflight
 		
 PACKAGE_VERSION=2.6.4
-PACKAGE_MAJOR_VERSION=2
-PACKAGE_MINOR_VERSION=64
+PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$1}'`
+PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$2$$3}'`
 PUPPETFILE=puppet-${PACKAGE_VERSION}
 PUPPETURL=http://puppetlabs.com/downloads/puppet/${PUPPETFILE}
 

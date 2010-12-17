@@ -4,6 +4,9 @@
 VERSION=2.6.4
 PKGTYPE=help
 OUTPUT="This is ${PKGTYPE}."
+PACKAGE_VERSION=2.6.4
+PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | /usr/bin/awk -F '.' '{print $$1}'`
+PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | /usr/bin/awk -F '.' '{print $$2$$3}'`
 
 ifeq (${VERSION},2.6.4)
 	PKGTYPE=ALL
@@ -25,6 +28,5 @@ endif
 	@-echo "These lines must be indented"
 	
 out:
-	@-echo "First line."
-	@-echo "OUTPUT = ${OUTPUT}"
+	@-echo "${PACKAGE_VERSION} AND ${PACKAGE_MAJOR_VERSION} AND ${PACKAGE_MINOR_VERSION}"
 	
