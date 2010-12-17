@@ -8,7 +8,7 @@ PACKAGE_VERSION=2.6.4
 PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | /usr/bin/awk -F '.' '{print $$1}'`
 PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | /usr/bin/awk -F '.' '{print $$2$$3}'`
 
-ifeq (${VERSION},2.6.4)
+ifeq (${VERSION},`echo ${VERSION} | grep -i all`)
 	PKGTYPE=ALL
 else
 	PKGTYPE=CLIENT
