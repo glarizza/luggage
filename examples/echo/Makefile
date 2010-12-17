@@ -3,6 +3,8 @@
 
 VERSION=2.6.4
 PKGTYPE=help
+OUTPUT="This is ${PKGTYPE}."
+
 ifeq (${VERSION},2.6.4)
 	PKGTYPE=ALL
 else
@@ -21,3 +23,8 @@ else
 endif
 	@-echo "This is a regular Echo Statement."
 	@-echo "These lines must be indented"
+	
+out:
+	@-echo "First line."
+	@-echo "OUTPUT = ${OUTPUT}"
+	

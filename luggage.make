@@ -281,6 +281,11 @@ l_usr_lib: l_usr
 	@sudo chown -R root:wheel ${WORK_D}/usr/lib
 	@sudo chmod -R 755 ${WORK_D}/usr/lib
 	
+l_usr_lib_ruby_site_ruby_1_8: l_usr
+	@sudo mkdir -p ${WORK_D}/usr/lib/ruby/site_ruby/1.8
+	@sudo chown -R root:wheel ${WORK_D}/usr/lib/ruby/site_ruby/1.8
+	@sudo chmod -R 755 ${WORK_D}/usr/lib/ruby/site_ruby/1.8
+	
 l_usr_libexec: l_usr
 	@sudo mkdir -p ${WORK_D}/usr/libexec
 	@sudo chown -R root:wheel ${WORK_D}/usr/libexec
@@ -370,6 +375,16 @@ l_usr_share: l_usr
 	@sudo mkdir -p ${WORK_D}/usr/share
 	@sudo chown -R root:wheel ${WORK_D}/usr/share
 	@sudo chmod -R 755 ${WORK_D}/usr/share
+
+l_usr_share_doc: l_usr_share
+	@sudo mkdir -p ${WORK_D}/usr/share/doc
+	@sudo chown -R root:wheel ${WORK_D}/usr/share/doc
+	@sudo chmod -R 755 ${WORK_D}/usr/share/doc
+
+l_usr_share_man: l_usr_share
+	@sudo mkdir -p ${WORK_D}/usr/share/man
+	@sudo chown -R root:wheel ${WORK_D}/usr/share/man
+	@sudo chmod -R 755 ${WORK_D}/usr/share/man
 
 l_var: l_root
 	@sudo mkdir -p ${WORK_D}/var
@@ -548,6 +563,7 @@ l_System_Library_User_Template_Preferences: l_System_Library_User_Template_Libra
 	@sudo mkdir -p ${USER_TEMPLATE_PREFERENCES}
 	@sudo chown root:wheel ${USER_TEMPLATE_PREFERENCES}
 	@sudo chmod -R 700 ${USER_TEMPLATE_PREFERENCES}
+	
 
 # file packaging rules
 
