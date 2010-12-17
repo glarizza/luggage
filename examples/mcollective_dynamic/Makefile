@@ -111,6 +111,7 @@ pack-mc-config: l_etc_mcollective
 	
 pack-mc-config-server: l_etc_mcollective
 	@sudo ${CP} ./${MCFILE}/etc/server.cfg.dist ${WORK_D}/etc/mcollective/server.cfg
+	sed -i '' "s#daemonize = 1#daemonize = 0#g" "${WORK_D}/etc/mcollective/server.cfg"
 	@sudo chmod 600 ${WORK_D}/etc/mcollective/server.cfg
 	
 pack-mc-config-client: l_etc_mcollective
