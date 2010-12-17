@@ -21,7 +21,7 @@
 #
 #  Description:  This Makefile will download the version of Puppet specified
 #    in the PACKAGE_VERSION variable from the Puppet Labs website, untar it,
-#	 and then install the source files into their Mac-specific locations.  
+#    and then install the source files into their Mac-specific locations.  
 #    The MAJOR and MINOR versions must be specified for the Info.plist file
 #    that Packagemaker requires, but I use awk on the PACKAGE_VERSION to 
 #    get these.  See inline comments.
@@ -44,13 +44,13 @@ PACKAGE_VERSION=2.6.4
 PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$1}'`
 PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$2$$3}'`
 PUPPETFILE=puppet-${PACKAGE_VERSION}
-PUPPETURL=http://puppetlabs.com/downloads/puppet/${PUPPETFILE}
+PUPPETURL=http://puppetlabs.com/downloads/puppet/${PUPPETFILE}.tar.gz
 
 # The unpack-puppet rule will pull the version of the Puppet source specified
 #    by PACKAGE_VERSION into the directory where the Makefile is located. From
 #    there we untar it to a directory named puppet-(PACKAGE_VERSION)
 unpack-puppet-${PUPPETFILE}:
-	curl ${PUPPETURL}.tar.gz -o ${PUPPETFILE}.tar.gz
+	curl ${PUPPETURL} -o ${PUPPETFILE}.tar.gz
 	@sudo ${TAR} xzf ${PUPPETFILE}.tar.gz
 
 # This rule will copy auth.conf to the /etc/puppet directory
