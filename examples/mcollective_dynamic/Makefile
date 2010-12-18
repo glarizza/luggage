@@ -99,9 +99,9 @@ pack-mc-mcollectived: l_usr_sbin
 	@sudo ${CP} ./${MCFILE}/mcollectived.rb ${WORK_D}/usr/sbin/mcollectived
 	@sudo chmod -R 755 ${WORK_D}/usr/sbin
 
-pack-mc-lib: l_Library_Ruby_Site_1_8
-	@sudo ${CP} -R ./${MCFILE}/lib/* ${WORK_D}/Library/Ruby/Site/1.8
-	@sudo chmod -R 755 ${WORK_D}/Library/Ruby/Site/1.8
+pack-mc-lib: l_usr_lib_ruby_site_ruby_1_8
+	@sudo ${CP} -R ./${MCFILE}/lib/* ${WORK_D}/usr/lib/ruby/site_ruby/1.8
+	@sudo chmod -R 755 ${WORK_D}/usr/lib/ruby/site_ruby/1.8
 	
 pack-mc-config: l_etc_mcollective
 	@sudo ${CP} ./${MCFILE}/etc/facts.yaml.dist ${WORK_D}/etc/mcollective/facts.yaml
@@ -117,6 +117,7 @@ pack-mc-config-server: l_etc_mcollective
 pack-mc-config-client: l_etc_mcollective
 	@sudo ${CP} ./${MCFILE}/etc/client.cfg.dist ${WORK_D}/etc/mcollective/client.cfg
 	@sudo chmod 600 ${WORK_D}/etc/mcollective/client.cfg
+	sed -i '' "s#libdir = /usr/libexec/mcollective#libdir = /usr/libexec#g" "${WORK_D}/etc/mcollective/client.cfg"
 
 pack-mc-launchd: l_Library_LaunchDaemons
 	@sudo ${CP} ./com.puppetlabs.mcollective.plist ${WORK_D}/Library/LaunchDaemons
