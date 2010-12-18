@@ -395,6 +395,11 @@ l_var_db: l_var
 	@sudo mkdir -p ${WORK_D}/var/db
 	@sudo chown -R root:wheel ${WORK_D}/var/db
 	@sudo chmod -R 755 ${WORK_D}/var/db
+
+l_var_lib_puppet: l_var
+	@sudo mkdir -p ${WORK_D}/var/lib/puppet
+	@sudo chown -R root:wheel ${WORK_D}/var/lib/puppet
+	@sudo chmod -R 755 ${WORK_D}/var/lib/puppet
 	
 l_var_log_angelia: l_root
 	@sudo mkdir -p ${WORK_D}/var/log/angelia

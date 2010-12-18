@@ -36,6 +36,7 @@ PAYLOAD=\
 		unpack-puppet-${PUPPETFILE} \
 		pack-puppet-etc \
 		pack-puppet-usr \
+		pack-puppet-vardir \
 		pack-puppet-preflight
 		
 # Variable Declarations:  Any variable can be set from the command line by
@@ -77,6 +78,10 @@ pack-puppet-usr: l_usr_bin l_usr_lib_ruby_site_ruby_1_8 l_usr_sbin l_usr_share_d
 	@sudo chmod -R 755 ${WORK_D}/usr/share/doc/
 	@sudo ${CP} -R ./${PUPPETFILE}/man/ ${WORK_D}/usr/share/man
 	@sudo chmod -R 755 ${WORK_D}/usr/share/man/
+	
+# This rule creates Puppet's default $vardir
+pack-puppet-vardir: l_var_lib_puppet
+	@sudo touch ${WORK_D}/var/lib/puppet/.created
 	
 # This rule sets up the preflight script from the Puppet source's /conf/osx
 #    directory and installs it into our scripts directory. From there, we
