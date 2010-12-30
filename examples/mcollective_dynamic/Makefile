@@ -49,7 +49,7 @@ PAYLOAD=\
 # Variable Declarations:  
 #    Any variable can be set from the command line by doing this:
 #    "make pkg PACKAGE_VERSION=1.0.0"
-PACKAGE_VERSION=1.0.0
+PACKAGE_VERSION=1.1.0
 PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$1}'`
 PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$2$$3}'`
 MCFILE=mcollective-${PACKAGE_VERSION}
