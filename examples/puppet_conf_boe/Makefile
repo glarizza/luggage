@@ -17,10 +17,26 @@
 
 include /usr/local/share/luggage/luggage.make
 
-TITLE=Huronhs_Puppet_Config
+TITLE=BOE_Puppet_Config
 REVERSE_DOMAIN=com.huronhs
-PAYLOAD=pack-puppetd
+PAYLOAD=\
+		pack-puppet-conf \
+		pack-puppetclean-script \
+		pack-puppetd-script \
+		pack-puppetd-ruby-script
 
-pack-puppetd: l_usr_bin
+pack-puppet-conf: l_etc_puppet
+	@sudo ${CP} ./puppet.conf ${WORK_D}/etc/puppet/puppet.conf
+	@sudo chmod 755 ${WORK_D}/etc/puppet/puppet.conf
+	
+pack-puppetd-script: l_usr_bin
+	@sudo ${CP} ./puppetd.sh ${WORK_D}/usr/bin/puppetd.sh
+	@sudo chmod 755 ${WORK_D}/usr/bin/puppetd.sh
+	
+pack-puppetd-ruby-script: l_usr_bin
 	@sudo ${CP} ./puppetd.rb ${WORK_D}/usr/bin/puppetd.rb
 	@sudo chmod 755 ${WORK_D}/usr/bin/puppetd.rb
+
+pack-puppetclean-script: l_usr_bin
+	@sudo ${CP} ./puppetclean.rb ${WORK_D}/usr/bin/puppetclean.rb
+	@sudo chmod 755 ${WORK_D}/usr/bin/puppetclean.rb
