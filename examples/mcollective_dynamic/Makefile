@@ -49,9 +49,10 @@ PAYLOAD=\
 # Variable Declarations:  
 #    Any variable can be set from the command line by doing this:
 #    "make pkg PACKAGE_VERSION=1.1.0"
-PACKAGE_VERSION=1.1.0
+PACKAGE_VERSION=1.1.1
 PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$1}'`
 PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$2$$3}'`
+PACKAGE_VERSION_CHECK=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$3}'`
 MCFILE=mcollective-${PACKAGE_VERSION}
 MCURL=http://puppetlabs.com/downloads/mcollective/${MCFILE}.tgz
 
@@ -112,13 +113,12 @@ pack-mc-libexec: l_usr_libexec
 
 # This rule installs the MCollective client binaries to /usr/sbin
 pack-mc-binaries: l_usr_sbin
-	@sudo ${CP} ./${MCFILE}/mc-* ${WORK_D}/usr/sbin
-	@sudo chmod -R 755 ${WORK_D}/usr/sbin
+	@sudo ${INSTALL} -m 755 ./${MCFILE}/mc-* ${WORK_D}/usr/sbin
+	if [ ${PACKAGE_VERSION_CHECK} -gt 0 ]; then /usr/bin/sudo ${INSTALL} -m 755 ./${MCFILE}/mc ${WORK_D}/usr/sbin; fi 
 	
 # This rule will install the mcollectived daemon file to /usr/sbin
 pack-mc-mcollectived: l_usr_sbin
-	@sudo ${CP} ./${MCFILE}/mcollectived.rb ${WORK_D}/usr/sbin/mcollectived
-	@sudo chmod -R 755 ${WORK_D}/usr/sbin
+	@sudo ${INSTALL} -m 755 ./${MCFILE}/mcollectived.rb ${WORK_D}/usr/sbin/mcollectived
 
 # This rule installs the MCollective Ruby Libraries to /usr/lib/ruby/site_ruby/1.8
 pack-mc-lib: l_usr_lib_ruby_site_ruby_1_8
@@ -127,29 +127,26 @@ pack-mc-lib: l_usr_lib_ruby_site_ruby_1_8
 	
 # This rule will install base configuration files to /etc/mcollective
 pack-mc-config: l_etc_mcollective
-	@sudo ${CP} ./${MCFILE}/etc/facts.yaml.dist ${WORK_D}/etc/mcollective/facts.yaml
-	@sudo ${CP} ./${MCFILE}/etc/rpc-help.erb ${WORK_D}/etc/mcollective/rpc-help.erb
+	@sudo ${INSTALL} -m 755 ./${MCFILE}/etc/facts.yaml.dist ${WORK_D}/etc/mcollective/facts.yaml
+	@sudo ${INSTALL} -m 755 ./${MCFILE}/etc/rpc-help.erb ${WORK_D}/etc/mcollective/rpc-help.erb
 	@sudo ${CP} -R ./${MCFILE}/etc/ssl ${WORK_D}/etc/mcollective/
 	@sudo chmod -R 755 ${WORK_D}/etc/mcollective
 	
 # This rule installs the MCollective server configuration file to /etc/mcollective
 #    It also adjusts the daemonize setting for OS X
 pack-mc-config-server: l_etc_mcollective
-	@sudo ${CP} ./${MCFILE}/etc/server.cfg.dist ${WORK_D}/etc/mcollective/server.cfg
-	@sudo chmod 600 ${WORK_D}/etc/mcollective/server.cfg
+	@sudo ${INSTALL} -m 600 ./${MCFILE}/etc/server.cfg.dist ${WORK_D}/etc/mcollective/server.cfg
 	sed -i '' "s#daemonize = 1#daemonize = 0#g" "${WORK_D}/etc/mcollective/server.cfg"
 	
 # This rule installs the MCollective server configuration file to /etc/mcollective
 #    It also adjusts the libdir setting to reflect the directory we've used above.
 pack-mc-config-client: l_etc_mcollective
-	@sudo ${CP} ./${MCFILE}/etc/client.cfg.dist ${WORK_D}/etc/mcollective/client.cfg
-	@sudo chmod 600 ${WORK_D}/etc/mcollective/client.cfg
+	@sudo ${INSTALL} -m 600 ./${MCFILE}/etc/client.cfg.dist ${WORK_D}/etc/mcollective/client.cfg
 	sed -i '' "s#libdir = /usr/libexec/mcollective#libdir = /usr/libexec#g" "${WORK_D}/etc/mcollective/client.cfg"
 
 # This rule installes a launchd plist to call mcollectived into /Library/LaunchDaemons
 pack-mc-launchd: l_Library_LaunchDaemons
-	@sudo ${CP} ./com.puppetlabs.mcollective.plist ${WORK_D}/Library/LaunchDaemons
-	@sudo chmod 644 ${WORK_D}/Library/LaunchDaemons/com.puppetlabs.mcollective.plist
+	@sudo ${INSTALL} -m 644 ./com.puppetlabs.mcollective.plist ${WORK_D}/Library/LaunchDaemons
 
 # Preflight Settings:
 #    The MCollective preflight scripts will uninstall current versions of files that the
