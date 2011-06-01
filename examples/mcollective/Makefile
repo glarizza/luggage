@@ -128,8 +128,7 @@ pack-mc-binaries: l_usr_sbin
 
 # This rule will install the mcollectived daemon file to /usr/sbin
 pack-mc-mcollectived: l_usr_sbin
-	@sudo ${INSTALL} -m 755 ./${MCFILE}/mcollectived.rb \ 
-		${WORK_D}/usr/sbin/mcollectived
+	@sudo ${INSTALL} -m 755 ./${MCFILE}/mcollectived.rb ${WORK_D}/usr/sbin/mcollectived
 
 # This rule installs the MCollective Ruby Libraries to 
 # /usr/lib/ruby/site_ruby/1.8
@@ -139,10 +138,10 @@ pack-mc-lib: l_usr_lib_ruby_site_ruby_1_8
 	
 # This rule will install base configuration files to /etc/mcollective
 pack-mc-config: l_etc_mcollective
-		@sudo ${INSTALL} -m 755 ./${MCFILE}/etc/facts.yaml.dist \ 
-	${WORK_D}/etc/mcollective/facts.yaml
-		@sudo ${INSTALL} -m 755 ./${MCFILE}/etc/rpc-help.erb \ 
-	${WORK_D}/etc/mcollective/rpc-help.erb
+	@sudo ${INSTALL} -m 755 ./${MCFILE}/etc/facts.yaml.dist \
+	  ${WORK_D}/etc/mcollective/facts.yaml
+	@sudo ${INSTALL} -m 755 ./${MCFILE}/etc/rpc-help.erb \
+	  ${WORK_D}/etc/mcollective/rpc-help.erb
 	@sudo ${CP} -R ./${MCFILE}/etc/ssl ${WORK_D}/etc/mcollective/
 	@sudo chmod -R 755 ${WORK_D}/etc/mcollective
 	
@@ -151,8 +150,7 @@ pack-mc-config: l_etc_mcollective
 pack-mc-config-server: l_etc_mcollective
 	@sudo ${INSTALL} -m 600 ./${MCFILE}/etc/server.cfg.dist \
 		${WORK_D}/etc/mcollective/server.cfg
-	sed -i '' "s#daemonize = 1#daemonize = 0#g" \
-		"${WORK_D}/etc/mcollective/server.cfg"
+	sed -i '' "s#daemonize = 1#daemonize = 0#g" "${WORK_D}/etc/mcollective/server.cfg"
 	
 # This rule installs the MCollective server configuration file to 
 #    /etc/mcollective  It also adjusts the libdir setting to reflect the 
