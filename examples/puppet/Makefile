@@ -40,7 +40,7 @@ PAYLOAD=\
 		
 # Variable Declarations:  Any variable can be set from the command line by
 #    doing this:  "make pkg PACKAGE_VERSION=2.6.2"
-PACKAGE_VERSION=2.6.4
+PACKAGE_VERSION=2.6.8
 PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$1}'`
 PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$2$$3}'`
 PUPPETFILE=puppet-${PACKAGE_VERSION}
