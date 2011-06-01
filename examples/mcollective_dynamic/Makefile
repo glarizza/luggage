@@ -17,21 +17,21 @@
 #
 #  Author:  Gary Larizza
 #  Created: 12/17/2010
-#  Last Modified: 2/10/2011
+#  Last Modified: 5/24/2011
 #
-#  Description:  This Makefile will download the version of MCollective specified
-#    in the PACKAGE_VERSION variable from the Puppet Labs website, untar it,
-#    and then install the source files into their Mac-specific locations.  
-#    The MAJOR and MINOR versions must be specified for the Info.plist file
-#    that Packagemaker requires, but I use awk on the PACKAGE_VERSION to 
-#    get these.  See inline comments.
+#  Description:  This Makefile will download the version of MCollective
+#    specified in the PACKAGE_VERSION variable from the Puppet Labs website,
+#    untar it, and then install the source files into their Mac-specific
+#    locations. The MAJOR and MINOR versions must be specified for the
+#    Info.plist file that Packagemaker requires, but I use awk on the
+#    PACKAGE_VERSION to get these.  See inline comments.
 #
 include /usr/local/share/luggage/luggage.make
 
 
 # Luggage Variables:
-#    If the TYPE variable isn't specified via the CLI, we will install everything
-#    into the resultant package
+#    If the TYPE variable isn't specified via the CLI, we will install
+#    everything into the resultant package
 TITLE=MCollective_Installer_Full
 REVERSE_DOMAIN=com.puppetlabs
 PAYLOAD=\
@@ -48,8 +48,8 @@ PAYLOAD=\
 		
 # Variable Declarations:  
 #    Any variable can be set from the command line by doing this:
-#    "make pkg PACKAGE_VERSION=1.1.0"
-PACKAGE_VERSION=1.1.1
+#    "make pkg PACKAGE_VERSION=1.2.0"
+PACKAGE_VERSION=1.2.0
 PACKAGE_MAJOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$1}'`
 PACKAGE_MINOR_VERSION=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$2$$3}'`
 PACKAGE_VERSION_CHECK=`echo ${PACKAGE_VERSION} | awk -F '.' '{print $$3}'`
@@ -107,8 +107,8 @@ unpack-mc-${MCFILE}:
 	@sudo ${TAR} xzf ${MCFILE}.tgz
 
 # This rule will install MCollective's plugin files to /usr/libexec/mcollective
-pack-mc-libexec: l_usr_libexec
-	@sudo ${CP} -R ./${MCFILE}/plugins/* ${WORK_D}/usr/libexec
+pack-mc-libexec: l_usr_libexec_mcollective
+	@sudo ${CP} -R ./${MCFILE}/plugins/* ${WORK_D}/usr/libexec/mcollective/
 	@sudo chmod -R 755 ${WORK_D}/usr/libexec/mcollective
 
 # This rule installs the MCollective client binaries to /usr/sbin
@@ -142,7 +142,6 @@ pack-mc-config-server: l_etc_mcollective
 #    It also adjusts the libdir setting to reflect the directory we've used above.
 pack-mc-config-client: l_etc_mcollective
 	@sudo ${INSTALL} -m 600 ./${MCFILE}/etc/client.cfg.dist ${WORK_D}/etc/mcollective/client.cfg
-	sed -i '' "s#libdir = /usr/libexec/mcollective#libdir = /usr/libexec#g" "${WORK_D}/etc/mcollective/client.cfg"
 
 # This rule installes a launchd plist to call mcollectived into /Library/LaunchDaemons
 pack-mc-launchd: l_Library_LaunchDaemons
