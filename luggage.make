@@ -290,6 +290,11 @@ l_usr_libexec: l_usr
 	@sudo mkdir -p ${WORK_D}/usr/libexec
 	@sudo chown -R root:wheel ${WORK_D}/usr/libexec
 	@sudo chmod -R 755 ${WORK_D}/usr/libexec
+	
+l_usr_libexec_mcollective: l_usr
+	@sudo mkdir -p ${WORK_D}/usr/libexec/mcollective
+	@sudo chown -R root:wheel ${WORK_D}/usr/libexec/mcollective
+	@sudo chmod -R 755 ${WORK_D}/usr/libexec/mcollective
 
 l_usr_local: l_usr
 	@sudo mkdir -p ${WORK_D}/usr/local
